@@ -9,7 +9,10 @@
 $(DBUILD)/%.o	Makefile	/^$(DBUILD)\/%.o : $(DSRC)\/%.c$/;"	t
 $(TARGET)	Makefile	/^$(TARGET) : $(OBJ)$/;"	t
 .depend	Makefile	/^.depend : $(SRC)$/;"	t
+BOARD_H_	include/board.h	/^#define BOARD_H_$/;"	d
 CC	Makefile	/^CC = gcc$/;"	m
+CELL_EMPTY	include/board.h	/^#define CELL_EMPTY /;"	d
+CELL_MINE	include/board.h	/^#define CELL_MINE /;"	d
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wpedantic `pkg-config --cflags ncurses`$/;"	m
 DBIN	Makefile	/^DBIN = bin$/;"	m
 DBUILD	Makefile	/^DBUILD = build$/;"	m
@@ -21,6 +24,21 @@ MKDIR_P	Makefile	/^MKDIR_P = mkdir -p$/;"	m
 OBJ	Makefile	/^OBJ = $(patsubst $(DSRC)\/%.c, $(DBUILD)\/%.o, $(SRC))$/;"	m
 SRC	Makefile	/^SRC = $(wildcard $(DSRC)\/*.c)$/;"	m
 TARGET	Makefile	/^TARGET = $(DBIN)\/ncmines$/;"	m
+_endwin_wrapper	src/main.c	/^void _endwin_wrapper() { endwin(); }$/;"	f	typeref:typename:void
+b	include/board.h	/^    struct board_cell_t *b;$/;"	m	struct:board_t	typeref:struct:board_cell_t *
+board_cell_t	include/board.h	/^struct board_cell_t {$/;"	s
+board_del	src/board.c	/^void board_del(struct board_t *board) {$/;"	f	typeref:typename:void
+board_new	src/board.c	/^struct board_t *board_new(size_t w, size_t h, size_t sx, size_t sy, int nmines) {$/;"	f	typeref:struct:board_t *
+board_t	include/board.h	/^struct board_t {$/;"	s
+board_uncover	src/board.c	/^int board_uncover(struct board_t *board, size_t x, size_t y) {$/;"	f	typeref:typename:int
 clean	Makefile	/^clean :$/;"	t
+flag	include/board.h	/^    char flag;$/;"	m	struct:board_cell_t	typeref:typename:char
+h	include/board.h	/^    size_t w, h;$/;"	m	struct:board_t	typeref:typename:size_t
 main	src/main.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
 ncmines	README.md	/^# ncmines$/;"	c
+nmines	include/board.h	/^    int nmines;$/;"	m	struct:board_t	typeref:typename:int
+uncovered	include/board.h	/^    char uncovered;$/;"	m	struct:board_cell_t	typeref:typename:char
+val	include/board.h	/^    char val;$/;"	m	struct:board_cell_t	typeref:typename:char
+w	include/board.h	/^    size_t w, h;$/;"	m	struct:board_t	typeref:typename:size_t
+x	include/board.h	/^    size_t x, y;$/;"	m	struct:board_cell_t	typeref:typename:size_t
+y	include/board.h	/^    size_t x, y;$/;"	m	struct:board_cell_t	typeref:typename:size_t
