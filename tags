@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+$(DBUILD)/%.o	Makefile	/^$(DBUILD)\/%.o : $(DSRC)\/%.c$/;"	t
+$(TARGET)	Makefile	/^$(TARGET) : $(OBJ)$/;"	t
+.depend	Makefile	/^.depend : $(SRC)$/;"	t
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wpedantic `pkg-config --cflags ncurses`$/;"	m
+DBIN	Makefile	/^DBIN = bin$/;"	m
+DBUILD	Makefile	/^DBUILD = build$/;"	m
+DSRC	Makefile	/^DSRC = src$/;"	m
+INCLUDE	Makefile	/^INCLUDE = include$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
+LIB	Makefile	/^LIB = `pkg-config --libs ncurses`$/;"	m
+MKDIR_P	Makefile	/^MKDIR_P = mkdir -p$/;"	m
+OBJ	Makefile	/^OBJ = $(patsubst $(DSRC)\/%.c, $(DBUILD)\/%.o, $(SRC))$/;"	m
+SRC	Makefile	/^SRC = $(wildcard $(DSRC)\/*.c)$/;"	m
+TARGET	Makefile	/^TARGET = $(DBIN)\/ncmines$/;"	m
+clean	Makefile	/^clean :$/;"	t
+main	src/main.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
+ncmines	README.md	/^# ncmines$/;"	c
