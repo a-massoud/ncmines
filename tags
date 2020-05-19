@@ -14,6 +14,7 @@ CC	Makefile	/^CC = gcc$/;"	m
 CELL_EMPTY	include/board.h	/^#define CELL_EMPTY /;"	d
 CELL_MINE	include/board.h	/^#define CELL_MINE /;"	d
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wpedantic `pkg-config --cflags ncurses`$/;"	m
+Controls	README.md	/^## Controls$/;"	s
 DBIN	Makefile	/^DBIN = bin$/;"	m
 DBUILD	Makefile	/^DBUILD = build$/;"	m
 DIFFICULTY_EASY	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
@@ -21,6 +22,7 @@ DIFFICULTY_HARD	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIF
 DIFFICULTY_MEDIUM	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
 DRAW_H_	include/draw.h	/^#define DRAW_H_$/;"	d
 DSRC	Makefile	/^DSRC = src$/;"	m
+Difficulties	README.md	/^## Difficulties$/;"	s
 FLAG_COLORS	include/draw.h	/^#define FLAG_COLORS /;"	d
 GAMESTATE_H_	include/gamestate.h	/^#define GAMESTATE_H_$/;"	d
 INCLUDE	Makefile	/^INCLUDE = include$/;"	m
