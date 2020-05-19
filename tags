@@ -16,29 +16,57 @@ CELL_MINE	include/board.h	/^#define CELL_MINE /;"	d
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wpedantic `pkg-config --cflags ncurses`$/;"	m
 DBIN	Makefile	/^DBIN = bin$/;"	m
 DBUILD	Makefile	/^DBUILD = build$/;"	m
+DIFFICULTY_EASY	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
+DIFFICULTY_HARD	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
+DIFFICULTY_MEDIUM	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
+DRAW_H_	include/draw.h	/^#define DRAW_H_$/;"	d
 DSRC	Makefile	/^DSRC = src$/;"	m
+FLAG_COLORS	include/draw.h	/^#define FLAG_COLORS /;"	d
+GAMESTATE_H_	include/gamestate.h	/^#define GAMESTATE_H_$/;"	d
 INCLUDE	Makefile	/^INCLUDE = include$/;"	m
 LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
 LIB	Makefile	/^LIB = `pkg-config --libs ncurses`$/;"	m
+MINE_COLORS	include/draw.h	/^#define MINE_COLORS /;"	d
 MKDIR_P	Makefile	/^MKDIR_P = mkdir -p$/;"	m
 OBJ	Makefile	/^OBJ = $(patsubst $(DSRC)\/%.c, $(DBUILD)\/%.o, $(SRC))$/;"	m
 SRC	Makefile	/^SRC = $(wildcard $(DSRC)\/*.c)$/;"	m
 TARGET	Makefile	/^TARGET = $(DBIN)\/ncmines$/;"	m
-_endwin_wrapper	src/main.c	/^void _endwin_wrapper() { endwin(); }$/;"	f	typeref:typename:void
+WARN_COLORS	include/draw.h	/^#define WARN_COLORS /;"	d
+_endwin_wrapper	src/draw.c	/^void _endwin_wrapper(void) {$/;"	f	typeref:typename:void
 b	include/board.h	/^    struct board_cell_t *b;$/;"	m	struct:board_t	typeref:struct:board_cell_t *
+b	include/gamestate.h	/^    struct board_t *b;$/;"	m	struct:gamestate_t	typeref:struct:board_t *
 board_cell_t	include/board.h	/^struct board_cell_t {$/;"	s
 board_del	src/board.c	/^void board_del(struct board_t *board) {$/;"	f	typeref:typename:void
-board_new	src/board.c	/^struct board_t *board_new(size_t w, size_t h, size_t sx, size_t sy, int nmines) {$/;"	f	typeref:struct:board_t *
+board_new	src/board.c	/^struct board_t *board_new(long w, long h, long sx, long sy, int nmines) {$/;"	f	typeref:struct:board_t *
 board_t	include/board.h	/^struct board_t {$/;"	s
-board_uncover	src/board.c	/^int board_uncover(struct board_t *board, size_t x, size_t y) {$/;"	f	typeref:typename:int
+board_uncover	src/board.c	/^int board_uncover(struct board_t *board, long x, long y) {$/;"	f	typeref:typename:int
 clean	Makefile	/^clean :$/;"	t
+difficultylevel	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	g
+drawend	src/draw.c	/^void drawend(struct gamestate_t *gs, char *msg) {$/;"	f	typeref:typename:void
+drawgame	src/draw.c	/^void drawgame(struct gamestate_t *gs) {$/;"	f	typeref:typename:void
+drawheader	src/draw.c	/^void drawheader(struct gamestate_t *gs) {$/;"	f	typeref:typename:void
+exit_with_error	src/draw.c	/^void exit_with_error(int c, const char *format, ...) {$/;"	f	typeref:typename:void
 flag	include/board.h	/^    char flag;$/;"	m	struct:board_cell_t	typeref:typename:char
-h	include/board.h	/^    size_t w, h;$/;"	m	struct:board_t	typeref:typename:size_t
+gamestate_del	src/gamestate.c	/^void gamestate_del(struct gamestate_t *gs) {$/;"	f	typeref:typename:void
+gamestate_new	src/gamestate.c	/^struct gamestate_t *gamestate_new(enum difficultylevel d) {$/;"	f	typeref:struct:gamestate_t *
+gamestate_t	include/gamestate.h	/^struct gamestate_t {$/;"	s
+gamestate_update	src/gamestate.c	/^void gamestate_update(struct gamestate_t *gs, char *should_drawgame,$/;"	f	typeref:typename:void
+gamewin	src/draw.c	/^WINDOW *gamewin = NULL;$/;"	v	typeref:typename:WINDOW *
+gtime	include/gamestate.h	/^    time_t gtime;$/;"	m	struct:gamestate_t	typeref:typename:time_t
+h	include/board.h	/^    long w, h;$/;"	m	struct:board_t	typeref:typename:long
+init	src/draw.c	/^void init(long w, long h) {$/;"	f	typeref:typename:void
 main	src/main.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
+mines_found	include/gamestate.h	/^    long mines_found;$/;"	m	struct:gamestate_t	typeref:typename:long
 ncmines	README.md	/^# ncmines$/;"	c
 nmines	include/board.h	/^    int nmines;$/;"	m	struct:board_t	typeref:typename:int
+started	include/gamestate.h	/^    char started;$/;"	m	struct:gamestate_t	typeref:typename:char
+stime	include/gamestate.h	/^    time_t stime;$/;"	m	struct:gamestate_t	typeref:typename:time_t
+titlewin	src/draw.c	/^WINDOW *titlewin = NULL;$/;"	v	typeref:typename:WINDOW *
 uncovered	include/board.h	/^    char uncovered;$/;"	m	struct:board_cell_t	typeref:typename:char
+use_color	src/draw.c	/^char use_color = 0;$/;"	v	typeref:typename:char
 val	include/board.h	/^    char val;$/;"	m	struct:board_cell_t	typeref:typename:char
-w	include/board.h	/^    size_t w, h;$/;"	m	struct:board_t	typeref:typename:size_t
-x	include/board.h	/^    size_t x, y;$/;"	m	struct:board_cell_t	typeref:typename:size_t
-y	include/board.h	/^    size_t x, y;$/;"	m	struct:board_cell_t	typeref:typename:size_t
+w	include/board.h	/^    long w, h;$/;"	m	struct:board_t	typeref:typename:long
+x	include/board.h	/^    long x, y;$/;"	m	struct:board_cell_t	typeref:typename:long
+x	include/gamestate.h	/^    long x, y;$/;"	m	struct:gamestate_t	typeref:typename:long
+y	include/board.h	/^    long x, y;$/;"	m	struct:board_cell_t	typeref:typename:long
+y	include/gamestate.h	/^    long x, y;$/;"	m	struct:gamestate_t	typeref:typename:long

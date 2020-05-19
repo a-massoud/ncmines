@@ -1,45 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <ncurses.h>
+#include <string.h>
 #include "board.h"
-
-void _endwin_wrapper() { endwin(); }
+#include "gamestate.h"
+#include "draw.h"
 
 int main(int argc, char **argv) {
     srand(time(NULL));
-    if(!initscr()) {
-        fprintf(stderr, "Failed to initialize ncurses\n");
-        return 1;
+    if(argc < 2) {
+        exit_with_error(1, "Usage: %s <easy|medium|hard>", argv[0]);
     }
-    curs_set(0);
-    atexit(_endwin_wrapper);
+    enum difficultylevel d;
+    for(int i = 0; i < strlen(argv[1]); i++)
+        if(argv[1][i] >= 'A' && argv[1][i] <= 'Z')
+            argv[1][i] = argv[1][i] + 'a' - 'A';
+    if(!strcmp(argv[1], "easy"))
+        d = DIFFICULTY_EASY;
+    else if(!strcmp(argv[1], "medium"))
+        d = DIFFICULTY_MEDIUM;
+    else if(!strcmp(argv[1], "hard"))
+        d = DIFFICULTY_HARD;
 
-    struct board_t *board = board_new(30, 16, 5, 5, 99);
-    if(!board) {
-        return 1;
-    }
+    struct gamestate_t *gs;
+    gs = gamestate_new(d);
+    init(gs->b->w, gs->b->h + 1);
 
-    board_uncover(board, 5, 5);
-
-    erase();
-    for(size_t i = 0; i < board->h; i++) {
-        for(size_t j = 0; j < board->w; j++) {
-            if(board->b[j + i * board->w].uncovered) {
-                if(board->b[j + i * board->w].val == CELL_EMPTY) continue;
-                if(board->b[j + i * board->w].val == CELL_MINE) {
-                    mvaddch(i, j, 'M');
-                    continue;
-                }
-                mvprintw(i, j, "%d", board->b[j + i * board->w].val);
-            } else {
-                mvaddch(i, j, '*');
-            }
+    char should_drawgame, should_drawheader, endgame;
+    drawheader(gs);
+    drawgame(gs);
+    while(1) {
+        gamestate_update(gs, &should_drawgame, &should_drawheader, &endgame);
+        if(endgame == 1) {
+            drawend(gs, "You win!");
+            exit(0);
+        } else if(endgame == 2) {
+            drawend(gs, "You lose!");
+            exit(0);
         }
-    }
-    refresh();
-    getch();
 
-    board_del(board);
+        if(should_drawgame)
+            drawgame(gs);
+        if(should_drawheader)
+            drawheader(gs);
+    }
+
     return 0;
 }
