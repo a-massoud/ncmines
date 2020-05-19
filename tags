@@ -28,6 +28,7 @@ Difficulties	README.md	/^## Difficulties$/;"	s
 FLAG_COLORS	include/draw.h	/^#define FLAG_COLORS /;"	d
 GAMESTATE_H_	include/gamestate.h	/^#define GAMESTATE_H_$/;"	d
 INCLUDE	Makefile	/^INCLUDE = include$/;"	m
+Installation	README.md	/^## Installation$/;"	s
 LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
 LIB	Makefile	/^LIB = `pkg-config --libs ncurses`$/;"	m
 MINE_COLORS	include/draw.h	/^#define MINE_COLORS /;"	d
