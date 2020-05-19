@@ -12,6 +12,7 @@ extern WINDOW *gamewin;
 extern WINDOW *titlewin;
 
 extern char use_color;
+extern char should_endwin;
 
 void exit_with_error(int c, const char *format, ...);
 void init(long w, long h);

@@ -69,6 +69,7 @@ main	src/main.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
 mines_found	include/gamestate.h	/^    long mines_found;$/;"	m	struct:gamestate_t	typeref:typename:long
 ncmines	README.md	/^# ncmines$/;"	c
 nmines	include/board.h	/^    int nmines;$/;"	m	struct:board_t	typeref:typename:int
+should_endwin	src/draw.c	/^char should_endwin = 0;$/;"	v	typeref:typename:char
 started	include/gamestate.h	/^    char started;$/;"	m	struct:gamestate_t	typeref:typename:char
 stime	include/gamestate.h	/^    time_t stime;$/;"	m	struct:gamestate_t	typeref:typename:time_t
 titlewin	src/draw.c	/^WINDOW *titlewin = NULL;$/;"	v	typeref:typename:WINDOW *

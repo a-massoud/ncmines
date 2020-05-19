@@ -10,11 +10,13 @@ WINDOW *gamewin = NULL;
 WINDOW *titlewin = NULL;
 
 char use_color = 0;
+char should_endwin = 0;
 
 void _endwin_wrapper(void) {
     if(gamewin) delwin(gamewin);
     if(titlewin) delwin(titlewin);
-    endwin();
+    if(should_endwin) endwin();
+    should_endwin = 0;
 }
 
 void exit_with_error(int c, const char *format, ...) {
@@ -35,6 +37,7 @@ void init(long w, long h) {
         exit_with_error(1, "Failed to start ncurses");
     }
     atexit(_endwin_wrapper);
+    should_endwin = 1;
     if(COLS < w || LINES < h) {
         exit_with_error(1, "Terminal not large enough");
     }
@@ -113,5 +116,6 @@ void drawheader(struct gamestate_t *gs) {
 
 void drawend(struct gamestate_t *gs, char *msg) {
     endwin();
+    should_endwin = 0;
     printf("%s\nTime: %d:%02d\n", msg, (int)gs->gtime / 60, (int)gs->gtime % 60);
 }
