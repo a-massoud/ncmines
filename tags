@@ -17,6 +17,8 @@ CFLAGS	Makefile	/^CFLAGS = -Wall -Wpedantic `pkg-config --cflags ncurses`$/;"	m
 Controls	README.md	/^## Controls$/;"	s
 DBIN	Makefile	/^DBIN = bin$/;"	m
 DBUILD	Makefile	/^DBUILD = build$/;"	m
+DESCRIPTION	ncmines.6	/^.SH DESCRIPTION$/;"	s	title:NCMINES
+DIFFICULTIES	ncmines.6	/^.SH DIFFICULTIES$/;"	s	title:NCMINES
 DIFFICULTY_EASY	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
 DIFFICULTY_HARD	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
 DIFFICULTY_MEDIUM	include/gamestate.h	/^enum difficultylevel {DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD};$/;"	e	enum:difficultylevel
@@ -29,12 +31,17 @@ INCLUDE	Makefile	/^INCLUDE = include$/;"	m
 LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
 LIB	Makefile	/^LIB = `pkg-config --libs ncurses`$/;"	m
 MINE_COLORS	include/draw.h	/^#define MINE_COLORS /;"	d
-MKDIR_P	Makefile	/^MKDIR_P = mkdir -p$/;"	m
+NAME	Makefile	/^NAME = ncmines$/;"	m
+NAME	ncmines.6	/^.SH NAME$/;"	s	title:NCMINES
+NCMINES	ncmines.6	/^.TH NCMINES 6$/;"	t
 OBJ	Makefile	/^OBJ = $(patsubst $(DSRC)\/%.c, $(DBUILD)\/%.o, $(SRC))$/;"	m
+PREFIX	Makefile	/^PREFIX = \/usr$/;"	m
 SRC	Makefile	/^SRC = $(wildcard $(DSRC)\/*.c)$/;"	m
-TARGET	Makefile	/^TARGET = $(DBIN)\/ncmines$/;"	m
+SYNOPSYS	ncmines.6	/^.SH SYNOPSYS$/;"	s	title:NCMINES
+TARGET	Makefile	/^TARGET = $(DBIN)\/$(NAME)$/;"	m
 WARN_COLORS	include/draw.h	/^#define WARN_COLORS /;"	d
 _endwin_wrapper	src/draw.c	/^void _endwin_wrapper(void) {$/;"	f	typeref:typename:void
+all	Makefile	/^all: $(TARGET)$/;"	t
 b	include/board.h	/^    struct board_cell_t *b;$/;"	m	struct:board_t	typeref:struct:board_cell_t *
 b	include/gamestate.h	/^    struct board_t *b;$/;"	m	struct:gamestate_t	typeref:struct:board_t *
 board_cell_t	include/board.h	/^struct board_cell_t {$/;"	s
@@ -57,6 +64,7 @@ gamewin	src/draw.c	/^WINDOW *gamewin = NULL;$/;"	v	typeref:typename:WINDOW *
 gtime	include/gamestate.h	/^    time_t gtime;$/;"	m	struct:gamestate_t	typeref:typename:time_t
 h	include/board.h	/^    long w, h;$/;"	m	struct:board_t	typeref:typename:long
 init	src/draw.c	/^void init(long w, long h) {$/;"	f	typeref:typename:void
+install	Makefile	/^install: all$/;"	t
 main	src/main.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
 mines_found	include/gamestate.h	/^    long mines_found;$/;"	m	struct:gamestate_t	typeref:typename:long
 ncmines	README.md	/^# ncmines$/;"	c
