@@ -92,18 +92,20 @@ void gamestate_update(struct gamestate_t *gs, char *should_drawgame,
             case 'f':
                 if(gs->started) {
                     ccell = gs->b->b + gs->x + gs->y * gs->b->w;
-                    if(ccell->flag == 0) {
-                        ccell->flag = 1;
-                        gs->mines_found++;
-                        *should_drawheader = 1;
-                    } else if(ccell->flag == 1) {
-                        ccell->flag = 2;
-                        gs->mines_found--;
-                        *should_drawheader = 1;
-                    } else if(ccell->flag == 2) {
-                        ccell->flag = 0;
+                    if(!ccell->uncovered) {
+                        if(ccell->flag == 0) {
+                            ccell->flag = 1;
+                            gs->mines_found++;
+                            *should_drawheader = 1;
+                        } else if(ccell->flag == 1) {
+                            ccell->flag = 2;
+                            gs->mines_found--;
+                            *should_drawheader = 1;
+                        } else if(ccell->flag == 2) {
+                            ccell->flag = 0;
+                        }
+                        *should_drawgame = 1;
                     }
-                    *should_drawgame = 1;
                 }
                 break;
             case ' ':
