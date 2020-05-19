@@ -6,7 +6,6 @@
 
 /* Type for each cell of board */
 struct board_cell_t {
-    long x, y;
     char val;
     char uncovered;
     char flag;

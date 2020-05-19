@@ -77,7 +77,5 @@ uncovered	include/board.h	/^    char uncovered;$/;"	m	struct:board_cell_t	typere
 use_color	src/draw.c	/^char use_color = 0;$/;"	v	typeref:typename:char
 val	include/board.h	/^    char val;$/;"	m	struct:board_cell_t	typeref:typename:char
 w	include/board.h	/^    long w, h;$/;"	m	struct:board_t	typeref:typename:long
-x	include/board.h	/^    long x, y;$/;"	m	struct:board_cell_t	typeref:typename:long
 x	include/gamestate.h	/^    long x, y;$/;"	m	struct:gamestate_t	typeref:typename:long
-y	include/board.h	/^    long x, y;$/;"	m	struct:board_cell_t	typeref:typename:long
 y	include/gamestate.h	/^    long x, y;$/;"	m	struct:gamestate_t	typeref:typename:long

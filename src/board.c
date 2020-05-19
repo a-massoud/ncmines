@@ -20,8 +20,6 @@ struct board_t *board_new(long w, long h, long sx, long sy, int nmines) {
     long x, y;
     for(x = 0; x < w; x++) {
         for(y = 0; y < h; y++) {
-            board->b[x + y * w].x = x;
-            board->b[x + y * w].y = y;
             board->b[x + y * w].val = CELL_EMPTY;
             board->b[x + y * w].uncovered = 0;
             board->b[x + y * w].flag = 0;
