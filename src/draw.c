@@ -44,7 +44,6 @@ void init(long w, long h) {
     curs_set(2);
     noecho();
     cbreak();
-    keypad(stdscr, TRUE);
 
     gamewin = newwin(h - 1, w, 1, 0);
     titlewin = newwin(1, w, 0, 0);
@@ -52,6 +51,7 @@ void init(long w, long h) {
         exit_with_error(1, "Failed to initialize windows");
     }
     nodelay(gamewin, TRUE);
+    keypad(gamewin, TRUE);
 
     if(has_colors()) {
         use_color = 1;
