@@ -57,7 +57,6 @@ void init(long w, long h) {
         use_color = 1;
         start_color();
         init_pair(FLAG_COLORS, COLOR_CYAN, COLOR_BLACK);
-        init_pair(MINE_COLORS, COLOR_RED, COLOR_RED);
         init_pair(WARN_COLORS, COLOR_BLACK, COLOR_YELLOW);
     }
 }
@@ -79,11 +78,6 @@ void drawgame(struct gamestate_t *gs) {
                 if(ccell.uncovered) {
                     switch(ccell.val) {
                         case CELL_EMPTY:
-                            break;
-                        case CELL_MINE:
-                            mvwaddch(gamewin, i, j, 'M' |
-                                    (use_color ? COLOR_PAIR(MINE_COLORS)
-                                     : A_STANDOUT));
                             break;
                         default:
                             mvwaddch(gamewin, i, j, (ccell.val + '0') |
