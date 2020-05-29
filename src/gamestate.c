@@ -109,7 +109,7 @@ void gamestate_update(struct gamestate_t *gs, char *should_drawgame,
                 }
                 break;
             case ' ':
-            case '\n':
+            case KEY_ENTER:
                 if(!gs->started) {
                     long w = gs->b->w, h = gs->b->h;
                     int nmines = gs->b->nmines;
@@ -122,22 +122,20 @@ void gamestate_update(struct gamestate_t *gs, char *should_drawgame,
                 } else {
                     *should_drawgame = 1;
                 }
+                /* Check if win state */
+                char win = 1;
+                long i;
+                for(i = 0; i < gs->b->w * gs->b->h; i++) {
+                    if(gs->b->b[i].val != CELL_MINE && !gs->b->b[i].uncovered) {
+                        win = 0;
+                        break;
+                    }
+                }
+                if(win)
+                    *endgame = 1;
                 break;
         }
 
-        /* Check if win state */
-        if(gs->mines_found == gs->b->nmines) {
-            char win = 1;
-            long i;
-            for(i = 0; i < gs->b->w * gs->b->h; i++) {
-                if(gs->b->b[i].val != CELL_MINE && gs->b->b[i].flag) {
-                    win = 0;
-                    break;
-                }
-            }
-            if(win)
-                *endgame = 1;
-        }
     }
 
     if(gs->stime != 0) {
