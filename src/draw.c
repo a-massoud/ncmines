@@ -56,7 +56,8 @@ void init(long w, long h) {
     if(has_colors()) {
         use_color = 1;
         start_color();
-        init_pair(FLAG_COLORS, COLOR_CYAN, COLOR_BLACK);
+        assume_default_colors(-1, -1);
+        init_pair(FLAG_COLORS, COLOR_CYAN, -1);
         init_pair(WARN_COLORS, COLOR_BLACK, COLOR_YELLOW);
     }
 }
